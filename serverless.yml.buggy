@@ -1,23 +1,19 @@
 service: big-mouth
-
 provider:
   name: aws
   runtime: nodejs10.x
   region: us-west-1
-  stage: ${opt:stage, self:custom.defaultStage}
+  stage: ${opt:stage, self:custom.defaultStage}
   profile: ${self:custom.profiles.${self:provider.stage}}
-
 custom:
-  defaultStage: dev
+  defaultStage: dev
   profiles:
-    dev: bruno.jullien
-    prod: bruno.jullien
-
+    dev: bruno.jullien
+    prod: bruno.jullien
 functions:
-  hello:
+  get-index:
     handler: functions/get-index.handler
     events:
       - http:
           path: /
           method: get
-
